@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>worker-workshop</title>
+  </head>
+  <script>
+    function register() {
+      navigator.serviceWorker
+        .register("/sw.ts", { scope: "/", type: "module" })
+        .then(
+          function (_registration) {
+            console.log("Register Service Worker: Success");
+          },
+          function (_error) {
+            console.log("Register Service Worker: Error");
+          },
+        );
+    }
+    function start() {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (const registration of registrations) {
+          console.log("Unregister Service Worker");
+          registration.unregister();
+        }
+        register();
+      });
+    }
+    if ("serviceWorker" in navigator) {
+      start();
+    }
+  </script>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
