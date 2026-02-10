@@ -1,6 +1,6 @@
 # Worker workshop
 
-1. `git clone`
+1. `git clone https://github.com/quadristan/nodejs-paris-workshop-sworker.git`
 2. `npm install --ignore-scripts`
 
 # In case you need HTTPs
