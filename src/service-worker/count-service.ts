@@ -1,18 +1,17 @@
-// import { createDb } from "./index-db";
+import { createDb } from "./index-db";
 import { Mutex } from "async-mutex";
 
-// const KEY = "counter";
+const KEY = "counter";
 export const createCountService = async () => {
-  // const _store = await createDb();
+  const store = await createDb();
   const mutex = new Mutex();
-  let count = 0;
 
   const get = async () => {
-    return count;
+    return await store.get(KEY, 0);
   };
 
   const set = async (v: number) => {
-    count = v;
+    await store.set(KEY, v);
   };
 
   const increase = async () => {

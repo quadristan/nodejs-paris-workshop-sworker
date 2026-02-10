@@ -30,3 +30,5 @@ handleFetch({
 self.addEventListener("activate", () => {
   console.log("SW activated");
 });
+
+self.addEventListener("fetch", (evt) => evt.respondWith(handleFetch(evt)));
